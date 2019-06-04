@@ -53,8 +53,10 @@ macro(build_uncrustify)
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
       ${extra_cmake_args}
       -Wno-dev
-  PATCH_COMMAND
-    ${patch_exe} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/install-patch.diff
+    PATCH_COMMAND
+      ${patch_exe} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/install-patch.diff
+    COMMAND
+      ${patch_exe} -p1 -N < ${CMAKE_CURRENT_SOURCE_DIR}/md5-cast-align.diff
   )
 
   # The external project will install to the build folder, but we'll install that on make install.
