@@ -10,6 +10,10 @@ macro(build_uncrustify)
     list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
   endif()
   if(DEFINED CMAKE_TOOLCHAIN_FILE)
+    if(QNX)
+      # defined in toolchain file
+      set_qnx_external_project_options()
+    endif()
     list(APPEND extra_cmake_args "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
     if(ANDROID)
       if(DEFINED ANDROID_ABI)
@@ -37,7 +41,12 @@ macro(build_uncrustify)
   endif()
 
   include(ExternalProject)
-  find_package(Patch REQUIRED)
+
+  if(QNX)
+    find_host_package(Patch REQUIRED)
+  else()
+    find_package(Patch REQUIRED)
+  endif()
 
   # Pinning to tip of master at the time of a desired bugfix
   set(uncrustify_version 45b836cff040594994d364ad6fd3f04adc890a26)
