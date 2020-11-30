@@ -12,6 +12,8 @@ macro(build_uncrustify)
   set(extra_cmake_args)
   if(DEFINED CMAKE_BUILD_TYPE)
     list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
+  else()
+    list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=Release)
   endif()
   if(DEFINED CMAKE_TOOLCHAIN_FILE)
     list(APPEND extra_cmake_args "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
@@ -43,8 +45,8 @@ macro(build_uncrustify)
   include(ExternalProject)
 
   # Pinning to tip of master at the time of a desired bugfix
-  set(uncrustify_version 45b836cff040594994d364ad6fd3f04adc890a26)
-  # Get uncrustify 0.68.1
+  set(uncrustify_version 25b765b4ccf1fc50302df3779188ccd402962ee0)
+  # Get uncrustify 0.73.0
   ExternalProject_Add(uncrustify-${uncrustify_version}
     GIT_REPOSITORY https://github.com/uncrustify/uncrustify.git
     GIT_TAG ${uncrustify_version}
@@ -85,7 +87,7 @@ if(NOT res EQUAL 0)
 else()
   # version of uncrustify before 0.65 user a different versionning scheme so the regex wont be matched
   string(REGEX REPLACE "^Uncrustify-(.*)_f$" "\\1" version_prefix_match "${out}")
-  if(version_prefix_match STREQUAL "" OR version_prefix_match VERSION_LESS 0.68)
+  if(version_prefix_match STREQUAL "" OR version_prefix_match VERSION_LESS 0.73)
     set(need_local_build TRUE)
   endif()
 endif()
