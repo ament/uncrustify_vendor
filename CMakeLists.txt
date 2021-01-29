@@ -52,6 +52,8 @@ macro(build_uncrustify)
       -Wno-dev
     PATCH_COMMAND
       ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git checkout -q . && ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/install-patch.diff
+    INSTALL_COMMAND
+      ${CMAKE_COMMAND} -E env DESTDIR= ${CMAKE_COMMAND} --install .
   )
 
   # The external project will install to the build folder, but we'll install that on make install.
