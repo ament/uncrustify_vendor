@@ -41,10 +41,13 @@ macro(build_uncrustify)
   # Pinning to tip of master at the time of a desired bugfix
   set(uncrustify_version 45b836cff040594994d364ad6fd3f04adc890a26)
   # Get uncrustify 0.68.1
-  ExternalProject_Add(uncrustify-0.68.1
+  ExternalProject_Add(uncrustify-${uncrustify_version}
     GIT_REPOSITORY https://github.com/uncrustify/uncrustify.git
     GIT_TAG ${uncrustify_version}
     GIT_CONFIG advice.detachedHead=false
+    # Suppress git update due to https://gitlab.kitware.com/cmake/cmake/-/issues/16419
+    # See https://github.com/ament/uncrustify_vendor/pull/22 for details
+    UPDATE_COMMAND ""
     TIMEOUT 600
     CMAKE_ARGS
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
