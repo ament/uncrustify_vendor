@@ -52,12 +52,6 @@ macro(build_uncrustify)
       -Wno-dev
     PATCH_COMMAND
       ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git checkout -q . && ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/install-patch.diff
-    # Workaround for https://gitlab.kitware.com/cmake/cmake/-/issues/18165,
-    # which is exacerbated by https://gitlab.kitware.com/cmake/cmake/-/issues/16419.
-    # We're configuring the project to use CMAKE_INSTALL_PREFIX, so we never want
-    # DESTDIR to affect it.
-    INSTALL_COMMAND
-      ${CMAKE_COMMAND} -E env DESTDIR= ${CMAKE_COMMAND} --install .
   )
 
   # The external project will install to the build folder, but we'll install that on make install.
