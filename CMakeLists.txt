@@ -44,8 +44,12 @@ macro(build_uncrustify)
 
   # Get uncrustify 0.72.0
   ExternalProject_Add(uncrustify-0.72.0
-    URL https://github.com/uncrustify/uncrustify/archive/refs/tags/uncrustify-0.72.0.tar.gz
-    URL_MD5 9e89cd3457cb1b431eab5c7a161c02a2
+    GIT_REPOSITORY https://github.com/uncrustify/uncrustify.git
+    GIT_TAG uncrustify-0.72.0
+    GIT_CONFIG advice.detachedHead=false
+    # Suppress git update due to https://gitlab.kitware.com/cmake/cmake/-/issues/16419
+    # See https://github.com/ament/uncrustify_vendor/pull/22 for details
+    UPDATE_COMMAND ""
     TIMEOUT 600
     CMAKE_ARGS
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
