@@ -89,6 +89,8 @@ else()
 endif()
 if(FORCE_BUILD_VENDOR_PKG OR need_local_build)
   build_uncrustify()
+else()
+  set(ignoreMe "${CMAKE_BUILD_TYPE}$")
 endif()
 
 # this ensures that the package has an environment hook setting the PATH
