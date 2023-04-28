@@ -53,6 +53,7 @@ macro(build_uncrustify)
     TIMEOUT 600
     CMAKE_ARGS
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
+      -DNoGitVersionString:BOOL=ON
       ${extra_cmake_args}
       -Wno-dev
       --no-warn-unused-cli
@@ -83,7 +84,7 @@ if(NOT res EQUAL 0)
   set(need_local_build TRUE)
 else()
   # Before 0.65 uncrustify used a different versioning scheme so the regex won't match
-  string(REGEX REPLACE "^Uncrustify-(.*)_f$" "\\1" version_prefix_match "${out}")
+  string(REGEX REPLACE "^Uncrustify(_d|)-(.*)_f$" "\\2" version_prefix_match "${out}")
   if(version_prefix_match STREQUAL "" OR version_prefix_match VERSION_LESS 0.72)
     set(need_local_build TRUE)
   endif()
