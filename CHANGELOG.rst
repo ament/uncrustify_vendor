@@ -2,8 +2,8 @@
 Changelog for package uncrustify_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.2.1 (2023-07-11)
+------------------
 * Switch to ament_cmake_vendor_package (`#34 <https://github.com/ament/uncrustify_vendor/issues/34>`_)
 * Contributors: Scott K Logan
 
