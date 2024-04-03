@@ -31,7 +31,7 @@ endif()
 ament_vendor(uncrustify_vendor
   SATISFIED ${UNCRUSTIFY}
   VCS_URL https://github.com/uncrustify/uncrustify.git
-  VCS_VERSION uncrustify-0.72.0
+  VCS_VERSION uncrustify-0.78.1
   PATCHES patches
   CMAKE_ARGS
     -DNoGitVersionString=ON
