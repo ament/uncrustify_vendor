@@ -2,8 +2,8 @@
 Changelog for package uncrustify_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.0.0 (2024-04-16)
+------------------
 * Update to uncrustify 0.78.1 (`#37 <https://github.com/ament/uncrustify_vendor/issues/37>`_)
   * Update to uncrustify 0.78.1
   * Fix the uncrustify version detection logic.
