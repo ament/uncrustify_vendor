@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.20)
 project(uncrustify_vendor)
 
 find_package(ament_cmake REQUIRED)
@@ -35,6 +35,8 @@ ament_vendor(uncrustify_vendor
   PATCHES patches
   CMAKE_ARGS
     -DNoGitVersionString=ON
+    -DPython3_FIND_STRATEGY=LOCATION
+    -DPython3_FIND_UNVERSIONED_NAMES=FIRST
 )
 
 ament_package()
